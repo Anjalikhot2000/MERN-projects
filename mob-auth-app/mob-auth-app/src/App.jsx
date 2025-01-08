@@ -80,7 +80,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h2 id="heading">Mobile Authentication App</h2>
+        <h2 id="heading">Authentication App</h2>
 
         {/* reCAPTCHA container */}
         <div id="recaptcha-container"></div>
