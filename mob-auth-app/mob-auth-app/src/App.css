@@ -2,19 +2,18 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #f8f9fa;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: black;
+  background-color: #734F96;
 }
 
 /* Form Container */
 div {
   width: 100%;
   max-width: 400px;
-  background-color: #ffffff;
+  background-color: white;
   border-radius: 10px;
   box-shadow: 9px 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -54,7 +53,7 @@ input[type="number"]:focus {
 button[type="submit"] {
   width: 100%;
   padding: 12px;
-  background-color: #4caf50;
+  background-color: #734F96;
   color: white;
   border: none;
   border-radius: 5px;
@@ -63,18 +62,17 @@ button[type="submit"] {
   transition: all 0.3s ease;
 
 }
-button:hover{
-  opacity: 0.7;
-}
+
 button:active {
-  background-color: #3e8e41;
+  background-color:  #149bd9;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
 
 /* Hover Effect for Button */
 button[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #149bd9;
+  opacity: 0.7;
 }
 
 /* Form Spacing */
@@ -97,9 +95,6 @@ form {
   }
 }
 
-#heading{
-  color:black;
-}
 
 #recaptcha-container{
   display:none;
