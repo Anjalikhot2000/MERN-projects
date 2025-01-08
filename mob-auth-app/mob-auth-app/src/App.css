@@ -100,3 +100,7 @@ form {
 #heading{
   color:black;
 }
+
+#recaptcha-container{
+  display:none;
+}

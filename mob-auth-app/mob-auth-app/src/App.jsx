@@ -80,10 +80,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h2 id="heading">Authentication App</h2>
+        <h1 id="heading">Authentication App</h1>
 
         {/* reCAPTCHA container */}
-        <div id="recaptcha-container"></div>
+        <div id="recaptcha-container" ></div><br></br>
 
         {/* Mobile number input */}
         <form onSubmit={this.onSignInSubmit}>
