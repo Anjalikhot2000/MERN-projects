@@ -1,7 +1,7 @@
 
 <h1>UI of the app</h1>
-![image](https://github.com/user-attachments/assets/a29df4dd-a000-46e5-a787-690176272ac9)
-<br>
+<img src="image.png" alt="Girl in a jacket" width="500" height="600">
 
-<p>It was aksed to make mobile number authentication application using firebase.Please find the below link</p>
+
+<p>The task involves developing a React.js application that uses Firebase to implement mobile number authentication, allowing users to verify their identity through OTP-based login or registration. Please find the below link to run the project.</p>
 <a href="https://mern-projects-kglb.vercel.app/">deployment link of mob-auth-app</a>
