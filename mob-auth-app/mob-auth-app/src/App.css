@@ -61,6 +61,15 @@ button[type="submit"] {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+
+}
+button:hover{
+  opacity: 0.7;
+}
+button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 /* Hover Effect for Button */
