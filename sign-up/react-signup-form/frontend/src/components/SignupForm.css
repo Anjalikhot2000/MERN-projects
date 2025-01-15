@@ -60,3 +60,14 @@
     font-size: 14px;
     text-align: center;
   }
+  .show-password {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+
+  }
+  
+  /* /* .show-password input {
+    margin: 8px; Adjust spacing between the checkbox and the label */
+  
+  

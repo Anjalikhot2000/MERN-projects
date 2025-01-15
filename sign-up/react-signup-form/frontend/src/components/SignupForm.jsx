@@ -11,6 +11,7 @@ const SignupForm = () => {
   });
 
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -85,7 +86,7 @@ const SignupForm = () => {
           required
         />
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
           placeholder="Password"
           value={formData.password}
@@ -93,13 +94,23 @@ const SignupForm = () => {
           required
         />
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="cpassword"
           placeholder="Confirm Password"
           value={formData.cpassword}
           onChange={handleChange}
           required
         />
+        <div className="show-password">
+          <label>
+            <input
+              type="checkbox"
+              checked={showPassword}
+              onChange={() => setShowPassword(!showPassword)}
+            />
+            Show password
+          </label>
+        </div>
         <button type="submit">Sign Up</button>
       </form>
     </div>
