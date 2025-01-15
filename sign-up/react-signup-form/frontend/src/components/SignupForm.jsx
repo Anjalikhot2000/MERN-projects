@@ -11,7 +11,7 @@ const SignupForm = () => {
   });
 
   const [error, setError] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // Toggle for password visibility
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,20 +43,18 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate form before submitting
     if (!validateForm()) {
       return;
     }
 
     try {
-      // Send data to backend API
       const response = await axios.post('http://localhost:5000/api/signup', {
         name: formData.name,
         email: formData.email,
         password: formData.password,
       });
 
-      alert(response.data.message); // Display server response
+      alert(response.data.message);
     } catch (error) {
       console.error('Error signing up:', error.response?.data?.message);
       alert(error.response?.data?.message || 'Error signing up. Please try again.');
@@ -67,7 +65,7 @@ const SignupForm = () => {
     <div className="form-container">
       <form onSubmit={handleSubmit}>
         <h2>Sign Up</h2>
-        {error && <p>{error}</p>}
+        {error && <p className="error-message">{error}</p>}
 
         <input
           type="text"
@@ -85,31 +83,37 @@ const SignupForm = () => {
           onChange={handleChange}
           required
         />
-        <input
-          type={showPassword ? "text" : "password"}
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type={showPassword ? "text" : "password"}
-          name="cpassword"
-          placeholder="Confirm Password"
-          value={formData.cpassword}
-          onChange={handleChange}
-          required
-        />
-        <div className="show-password">
-          <label>
-            <input
-              type="checkbox"
-              checked={showPassword}
-              onChange={() => setShowPassword(!showPassword)}
-            />
-            Show password
-          </label>
+        <div className="password-container">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <span
+            className="toggle-password"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? '👁' : '👁️'}
+          </span>
+        </div>
+        <div className="password-container">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            name="cpassword"
+            placeholder="Confirm Password"
+            value={formData.cpassword}
+            onChange={handleChange}
+            required
+          />
+          <span
+            className="toggle-password"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? '👁' : '👁️'}
+          </span>
         </div>
         <button type="submit">Sign Up</button>
       </form>
