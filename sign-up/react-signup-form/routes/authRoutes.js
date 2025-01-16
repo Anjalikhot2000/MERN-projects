@@ -1,10 +1,9 @@
 const express = require('express');
-const User = require('../models/user');
+const User = require('../models/user'); // Adjust the path to your User model
 const bcrypt = require('bcrypt');
 
 const router = express.Router();
 
-// Sign-Up Route
 router.post('/signup', async (req, res) => {
   const { name, email, password } = req.body;
 
