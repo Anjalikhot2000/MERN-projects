@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('../models/user'); // Adjust the path to your User model
+const User = require('../../models/user'); // Adjust the path to your User model
 const bcrypt = require('bcrypt');
 
 const router = express.Router();
