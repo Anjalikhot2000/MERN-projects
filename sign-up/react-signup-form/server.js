@@ -1,66 +1,34 @@
-// Import required modules
+// const express = require('express');
+// const router = express.Router();
+
+// // Example route
+// router.get('/test', (req, res) => {
+//     res.send('AuthRoutes is working!');
+// });
+
+// module.exports = router;
+
+
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const authRoutes = require('./routes/authRoutes'); // Import routes
 
-// Initialize Express App
 const app = express();
 
-// Middleware
-app.use(express.json()); // Parse JSON request bodies
-app.use(cors()); // Handle Cross-Origin Resource Sharing (CORS)
+const MONGO_URI = process.env.MONGO_URI;
 
-// MongoDB Connection
-mongoose.connect('mongodb://127.0.0.1:27017/signupDB', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => console.log('MongoDB connected'))
-  .catch((err) => console.error('MongoDB connection error:', err));
+mongoose
+  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('Connected to MongoDB Atlas'))
+  .catch((err) => console.error('Error connecting to MongoDB Atlas:', err));
 
-// Define User Schema and Model
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
+app.use(cors()); // Enable CORS for cross-origin requests
+app.use(express.json()); // Parse incoming JSON requests
 
-const User = mongoose.model('User', userSchema);
+// Use authentication routes
+app.use('/api', authRoutes);
 
-// Routes
-// Signup Route
-app.post('/api/signup', async (req, res) => {
-  try {
-    const { name, email, password } = req.body;
-
-    if (!name || !email || !password) {
-      return res.status(400).json({ message: 'All fields are required' });
-    }
-
-    // Check if user already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ message: 'Email already exists' });
-    }
-
-    // Create a new user
-    const newUser = new User({ name, email, password });
-    await newUser.save();
-
-    res.status(201).json({ message: 'User created successfully' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// Default Route
-app.get('/', (req, res) => {
-  res.send('Server is running!');
-});
-
-// Start the Server
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
