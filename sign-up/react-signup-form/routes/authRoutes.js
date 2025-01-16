@@ -17,7 +17,9 @@ router.post('/signup', async (req, res) => {
     const newUser = new User({ name, email, password: hashedPassword });
     await newUser.save();
 
-    res.status(201).json({ message: 'User signed up successfully' });
+    res.status(201).json({ message: 'User signed up successfully' ,
+      newUser
+    });
   } catch (err) {
     console.error('Error during sign-up:', err);
     res.status(500).json({ message: 'Server error. Please try again later.' });

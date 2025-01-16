@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import "./SignupForm.css";
 
+
 const SignupForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -48,7 +49,7 @@ const SignupForm = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/signup', {
+      const response = await axios.post("http://localhost:5000/api/signup", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
