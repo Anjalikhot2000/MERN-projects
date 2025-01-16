@@ -1,22 +1,10 @@
-// const express = require('express');
-// const router = express.Router();
-
-// // Example route
-// router.get('/test', (req, res) => {
-//     res.send('AuthRoutes is working!');
-// });
-
-// module.exports = router;
-
-
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const authRoutes = require('./routes/authRoutes'); // Import routes
+const authRoutes = require('../routes/authRoutes'); // Import routes
 
 const app = express();
-
 const MONGO_URI = process.env.MONGO_URI;
 
 mongoose
@@ -24,10 +12,14 @@ mongoose
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch((err) => console.error('Error connecting to MongoDB Atlas:', err));
 
-app.use(cors()); // Enable CORS for cross-origin requests
-app.use(express.json()); // Parse incoming JSON requests
+app.use(cors({
+  origin: ['http://localhost:3000', 'https://your-vercel-domain.vercel.app'], // Allow localhost and Vercel
+  methods: ['GET', 'POST'],
+  credentials: true, // If needed for authentication cookies
+}));
+app.use(express.json());
 
-// Use authentication routes
+// Routes
 app.use('/api', authRoutes);
 
 const PORT = process.env.PORT || 5000;
